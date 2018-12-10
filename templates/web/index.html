@@ -1,0 +1,49 @@
+{% extends './base_web.html' %}
+
+
+{% block title_s %}
+
+{% endblock %}
+
+
+{% block content %}
+{{ block.super }}
+<article>
+  <aside class="l_box">
+      <div class="about_me">
+        <h2>关于我</h2>
+        <ul>
+          <i><img src="/static/web/images/4.jpg"></i>
+          <p><b>Deng</b>，一个90后草根男站长！一直潜心研究Python技术，一边工作一边积累经验，分享一些个人学习经验及博客。</p>
+        </ul>
+      </div>
+      <div class="wdxc">
+        <h2>女神相册</h2>
+        <ul>
+          <li><img src="/static/web/images/7.jpg"></a></li>
+          <li><img src="/static/web/images/8.jpg"></a></li>
+          <li><img src="/static/web/images/9.jpg"></a></li>
+          <li><img src="/static/web/images/10.jpg"></a></li>
+          <li><img src="/static/web/images/11.jpg"></a></li>
+          <li><img src="/static/web/images/12.jpg"></a></li>
+        </ul>
+      </div>
+  </aside>
+
+  <main class="r_box">
+    {% for art in articles %}
+    <li style="height=500px">
+      <!--<i><a href="/"><img src="/static/web/images/1.jpg"></a></i>-->
+      <h3><a href="{% url 'web:info' art.id %}">{{ art.a_title }}</a></h3>
+      <p style="height=50px">{{ art.a_content | safe }}</p>
+    </li>
+    {% endfor %}
+
+  </main>
+</article>
+<!--<footer>-->
+  <!--<p>Design by <a href="http://www.baidu.com" target="_blank">Deng个人博客</a> <a href="/">黑ICP备66666666号-6</a></p>-->
+<!--</footer>-->
+<a href="#" class="cd-top">Top</a>
+{% endblock %}
+

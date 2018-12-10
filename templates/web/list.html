@@ -1,0 +1,62 @@
+{% extends './base_web.html' %}
+
+
+{% block js %}
+{{ block.super }}
+<script type="text/javascript" src="js/hc-sticky.js"></script>
+{% endblock %}
+
+
+{% block content %}
+{{ block.super }}
+<article>
+  <aside class="l_box">
+    <div class="fenlei">
+      <h2>文章当前分类： {{ atype_now }}</h2>
+      {% for arttype in arttypes %}
+      <ul>
+        <li><a href="{% url 'web:list' arttype.id %}">{{ arttype.type }}</a></li>
+      </ul>
+      {% endfor %}
+    </div>
+
+
+<div class="cloud">
+      <h2>标签云</h2>
+      <ul>
+        <a href="/">陌上花开</a> <a href="/">校园生活</a> <a href="/">html5</a> <a href="/">SumSung</a> <a href="/">青春</a> <a href="/">温暖</a> <a href="/">阳光</a> <a href="/">三星</a><a href="/">索尼</a> <a href="/">华维荣耀</a> <a href="/">三星</a> <a href="/">索尼</a>
+      </ul>
+    </div>
+
+  </aside>
+  <main class="r_box">
+    {% for art in page %}
+    <li>
+      <h3><a href="{% url 'web:info' art.id %}">{{ art.a_title }}</a></h3>
+      <p>{{ art.a_content | safe }}</p>
+    </li>
+    {% endfor %}
+
+
+    <div class="pagelist"><a class="allpage"><b>共{{ page.paginator.num_pages }}页</b></a>
+      {% if page.has_previous %}
+      <a href="{{ url }}?page={{ page.previous_page_number }}" class="curPage"><span>&laquo;</span></a>
+      {% endif %}
+
+      {% for i in page.paginator.page_range %}
+      <a href="{{ url }}?page={{ i }}" class="curPage">{{ i }}</a>
+      {% endfor %}
+
+      {% if page.has_next %}
+      <a href="{{ url }}?page={{ page.next_page_number }}" class="curPage"><span>&raquo;</span></a>
+      {% endif %}
+      </div>
+
+  </main>
+</article>
+
+<!--<footer>-->
+  <!--<p>Design by <a href="http://www.baidu.com" target="_blank">Deng个人博客</a> <a href="/">黑ICP备66666666号-6</a></p>-->
+<!--</footer>-->
+<a href="#" class="cd-top">Top</a>
+{% endblock %}
